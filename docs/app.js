@@ -13,6 +13,7 @@ class HandsOff {
         // Controls
         this.startBtn = document.getElementById('startBtn');
         this.stopBtn = document.getElementById('stopBtn');
+        this.pipBtn = document.getElementById('pipBtn');
         this.soundToggle = document.getElementById('soundToggle');
         this.thresholdSlider = document.getElementById('threshold');
         this.thresholdValue = document.getElementById('thresholdValue');
@@ -49,6 +50,7 @@ class HandsOff {
     setupEventListeners() {
         this.startBtn.addEventListener('click', () => this.start());
         this.stopBtn.addEventListener('click', () => this.stop());
+        this.pipBtn.addEventListener('click', () => this.togglePictureInPicture());
         this.soundToggle.addEventListener('change', (e) => {
             this.enableSound = e.target.checked;
             if (!this.enableSound) {
@@ -65,6 +67,13 @@ class HandsOff {
             const thresholds = [0.12, 0.08, 0.05];
             this.proximityThreshold = thresholds[value - 1];
             this.sensitivityValue.textContent = labels[value - 1];
+        });
+
+        // Handle visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && this.isRunning) {
+                console.log('Tab hidden - detection may be throttled. Use Picture-in-Picture mode to keep monitoring while using other tabs.');
+            }
         });
     }
 
@@ -93,6 +102,7 @@ class HandsOff {
             this.isRunning = true;
             this.startBtn.disabled = true;
             this.stopBtn.disabled = false;
+            this.pipBtn.disabled = false;
             this.updateStatus('Clear', false);
 
         } catch (error) {
@@ -354,6 +364,19 @@ class HandsOff {
         this.alarmOscillator = null;
     }
 
+    async togglePictureInPicture() {
+        try {
+            if (document.pictureInPictureElement) {
+                await document.exitPictureInPicture();
+            } else {
+                await this.video.requestPictureInPicture();
+            }
+        } catch (error) {
+            console.error('Picture-in-Picture error:', error);
+            alert('Picture-in-Picture is not supported or failed. Make sure you have camera running first.');
+        }
+    }
+
     stop() {
         this.isRunning = false;
 
@@ -388,9 +411,15 @@ class HandsOff {
         this.alertActive = false;
         this.alertOverlay.classList.remove('active');
 
+        // Exit PiP if active
+        if (document.pictureInPictureElement) {
+            document.exitPictureInPicture().catch(() => {});
+        }
+
         // Update UI
         this.startBtn.disabled = false;
         this.stopBtn.disabled = true;
+        this.pipBtn.disabled = true;
         this.updateStatus('Camera Off', false);
     }
 }
