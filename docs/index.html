@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands Off - Stop Touching Your Face</title>
+    <meta name="description" content="Real-time webcam detector that alerts you when your hands touch your face. Break the habit with annoying alarms.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✋ Hands Off</h1>
+            <p class="tagline">Stop touching your face with annoying alarms</p>
+        </header>
+
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">Start Camera</button>
+            <button id="stopBtn" class="btn btn-secondary" disabled>Stop</button>
+            <label class="sound-toggle">
+                <input type="checkbox" id="soundToggle" checked>
+                <span>Enable Annoying Alarm</span>
+            </label>
+        </div>
+
+        <div class="video-container">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <div id="alert" class="alert-overlay">
+                <div class="alert-text">HANDS ON FACE!</div>
+                <div id="duration" class="duration-text"></div>
+            </div>
+            <div id="status" class="status-indicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Camera Off</span>
+            </div>
+        </div>
+
+        <div class="settings">
+            <h3>Settings</h3>
+            <div class="setting-item">
+                <label for="threshold">Alert Threshold: <span id="thresholdValue">1.0</span>s</label>
+                <input type="range" id="threshold" min="0.5" max="3.0" step="0.1" value="1.0">
+            </div>
+            <div class="setting-item">
+                <label for="sensitivity">Proximity Sensitivity: <span id="sensitivityValue">Medium</span></label>
+                <input type="range" id="sensitivity" min="1" max="3" step="1" value="2">
+            </div>
+        </div>
+
+        <div class="info">
+            <h3>How It Works</h3>
+            <ol>
+                <li>Click "Start Camera" to begin</li>
+                <li>Position your face clearly in view</li>
+                <li>When your hands touch your face for more than 1 second, you'll get a red alert and annoying alarm</li>
+                <li>Remove your hands to stop the alarm</li>
+            </ol>
+            <p class="privacy-note">🔒 All processing happens locally in your browser. No video is recorded or uploaded.</p>
+        </div>
+
+        <footer>
+            <p>Built to break the beard-pulling habit | <a href="https://github.com/ckelimarks/hands-off" target="_blank">View on GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

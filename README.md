@@ -1,6 +1,23 @@
-# Face Touch Detector
+# Hands Off
 
-A real-time webcam-based detector that alerts you when your hands touch your face for more than 1 second. Helps break unconscious habits like beard pulling or face touching.
+Stop touching your face with annoying alarms. A real-time webcam detector that alerts you when your hands touch your face for more than 1 second. Helps break unconscious habits like beard pulling or face touching.
+
+## 🌐 Try It Now
+
+**[Launch Web App](https://ckelimarks.github.io/hands-off/)** - No installation needed! Works directly in your browser.
+
+## Two Versions Available
+
+1. **Web Version** (recommended) - Zero installation, works in any modern browser
+   - Launch directly at: https://ckelimarks.github.io/hands-off/
+   - No Python or dependencies needed
+   - Works on any device with a webcam
+   - All processing happens locally in your browser
+
+2. **Python Desktop Version** - For advanced users who prefer a native application
+   - See installation instructions below
+
+---
 
 ## Features
 
@@ -11,14 +28,16 @@ A real-time webcam-based detector that alerts you when your hands touch your fac
 - Console logging of touch events
 - Mirror-mode webcam display
 
-## Installation
+## Python Desktop Version
+
+### Installation
 
 ```bash
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-## Usage
+### Usage
 
 ```bash
 python detector.py
