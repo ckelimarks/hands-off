@@ -1,10 +1,27 @@
 # Hands Off
 
-Stop touching your face with annoying alarms. A real-time webcam detector that alerts you when your hands touch your face for more than 1 second. Helps break unconscious habits like beard pulling or face touching.
+**Building awareness to break the cycle.**
+
+A supportive tool for trichotillomania, dermatillomania, and other body-focused repetitive behaviors (BFRBs). Real-time webcam alerts help you catch yourself when your hands touch your face, building the awareness needed to break unconscious habits.
 
 ## 🌐 Try It Now
 
 **[Launch Web App](https://ckelimarks.github.io/hands-off/)** - No installation needed! Works directly in your browser.
+
+## 🔒 Your Privacy is Protected
+
+**100% Private. Zero data collection. No recording. No tracking.**
+
+- ✅ All face and hand detection happens **locally in your browser**
+- ✅ **Nothing is ever recorded, uploaded, or stored**
+- ✅ No servers process your video - not even ours
+- ✅ No analytics, cookies, or tracking of any kind
+- ✅ Works completely offline after initial page load
+- ✅ Your webcam feed never leaves your device
+
+Even the hosted web version at GitHub Pages is completely private. The code runs entirely on your machine. We can't see your video because we never receive it. You can verify this by checking your browser's network tab - no video data is transmitted.
+
+**For extra privacy**: You can download this repo and run it locally, or inspect the source code yourself.
 
 ## Two Versions Available
 
